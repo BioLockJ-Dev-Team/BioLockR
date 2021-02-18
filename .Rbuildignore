@@ -1,2 +1,5 @@
 ^BioLockR\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+inst/java/BioLockJ/.git*
+inst/java/BioLockJ/.git/*
