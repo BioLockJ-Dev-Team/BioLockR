@@ -28,7 +28,8 @@ bljProj returns the path to the BioLockJ project directory (where new pipeline i
 }}
 
 \examples{
-getBljJar()
+# setBljJar("/path/to/BioLockJ/dist/BioLockJ.jar")
+# getBljJar()
 
 getBljProj()
 

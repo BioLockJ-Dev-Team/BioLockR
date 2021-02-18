@@ -14,18 +14,30 @@
 #' @export
 #'
 #' @examples
-#' getBljJar()
+#' # setBljJar("/path/to/BioLockJ/dist/BioLockJ.jar")
+#' # getBljJar()
 #'
 getBljJar <- function(){
-    BLJ_JAR = Sys.getenv("BLJ_JAR")
-    if (is.null(BLJ_JAR) || is.na(BLJ_JAR) || length(BLJ_JAR) < 1 || BLJ_JAR=="" ){
-        BLJ_DIR = Sys.getenv("BLJ")
-        if (is.null(BLJ_DIR) || is.na(BLJ_DIR) || length(BLJ_DIR) < 1 || BLJ_DIR=="" ){
-            dir = system.file('BioLockJ',package = 'BioLockR')
-            Sys.setenv(BLJ_DIR=dir)
-        }
-        BLJ_JAR = file.path(BLJ_DIR, "dist", "BioLockJ.jar")
+    # have I already figured this out this session?
+    BLJ_JAR=getOption("BLJ_JAR")
+    if ( !isReadableValue(BLJ_JAR) ){
+        # is it given in my config file ? if yes, use that!
+        config = system.file("config", "paths.properties", package = "BioLockR")
+        vals = read_props_file( config )
+        BLJ_JAR = vals[["BLJ_JAR"]]
     }
-    if ( !file.exists(BLJ_JAR) ) stop("Invalid location for BioLockJ jar file:", BLJ_JAR)
-    return(BLJ_JAR)
+    if ( !isReadableValue(BLJ_JAR) ){
+        # if its not there... is BLJ in env ?
+        BLJ_DIR = Sys.getenv("BLJ")
+        if ( isReadableValue(BLJ_DIR) && file.exists(BLJ_DIR)){
+            BLJ_JAR = file.path(BLJ_DIR, "dist", "BioLockJ.jar")
+        }
+    }
+    if ( !isReadableValue(BLJ_JAR) || !file.exists(BLJ_JAR) ) {
+        message("Please use setBljJar() to set a valid location.")
+        stop("Invalid location for BioLockJ jar file:\n  ", BLJ_JAR)
+    }else{
+        options(BLJ_JAR=BLJ_JAR) # remember for this session
+        return(BLJ_JAR)
+    }
 }
