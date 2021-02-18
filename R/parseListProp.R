@@ -12,5 +12,9 @@
 #' #>[1] "one"   "two"   "three"
 #'
 parseListProp <- function(value){
-    trimws( unlist( strsplit( value, ",", fixed=TRUE) ) )
+    if (isReadableValue(value)){
+        return( trimws( unlist( strsplit( value, ",", fixed=TRUE) ) ) )
+    }else{
+        return(c())
+    }
 }

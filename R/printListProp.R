@@ -8,9 +8,10 @@
 #' @seealso parseListProp
 #'
 #' @examples
-#' printListProp(c("one", "two", "three"))
-#' #> [1] "one, two, three"
 #'
+# printListProp(c("one", "two", "three"))
+# #> [1] "one, two, three"
+#
 printListProp <- function( values ){
     vals = values[isReadableValue(values)]
     if (isReadableValue(vals)){

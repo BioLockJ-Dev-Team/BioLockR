@@ -2,18 +2,18 @@
 % Please edit documentation in R/isReadableValue.R
 \name{isReadableValue}
 \alias{isReadableValue}
-\title{Title}
+\title{Is Readable Value}
 \usage{
 isReadableValue(value)
 }
 \arguments{
-\item{value}{}
+\item{value}{usually the value of a property or a user response.}
 }
 \value{
-
+boolean. Return FALSE if value is NULL, NA, empty vector/list or empty string; otherwise return TRUE.
 }
 \description{
-Title
+Use this method to prevent failures from NULL, NA, or empty values.
 }
 \examples{
 isReadableValue(NA)

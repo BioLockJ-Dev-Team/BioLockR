@@ -15,9 +15,11 @@ setBljProj(path, remember = TRUE, doublecheck = TRUE)
 \item{remember}{TRUE/FALSE: Should this value be remembered for future sessions.
 If true, the value is appended to the $HOME/.Renviron file, which can be edited
 using: usethis::edit_r_environ()}
+
+\item{doublecheck}{(only used if remember==TRUE) should an interactive response be required before saving value to a file.}
 }
 \value{
-
+TRUE if path is set for current session
 
 
 }

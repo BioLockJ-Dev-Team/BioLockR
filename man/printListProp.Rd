@@ -16,8 +16,6 @@ a single string representing the set of values as a comma-separated list
 Assemble a BioLockJ list property
 }
 \examples{
-printListProp(c("one", "two", "three"))
-#> [1] "one, two, three"
 
 }
 \seealso{

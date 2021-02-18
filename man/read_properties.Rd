@@ -17,7 +17,7 @@ read_props_file(filepath)
 \value{
 read_properties: returns a named character vector.  Names are property names (left of =), values are property values (right of =).
 
-read_props_file: is a wrapper for read_properties that takes a file; returns result of read_properties().
+read_props_file(): is a wrapper for read_properties() that takes a file; returns result of read_properties().
 }
 \description{
 Read properties from a BioLockJ config file or properties file, or a vector of lines representing BioLockJ properties.
