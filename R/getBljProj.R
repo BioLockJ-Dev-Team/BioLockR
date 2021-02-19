@@ -9,15 +9,23 @@
 #' getBljProj()
 #'
 getBljProj <- function(){
-    path = Sys.getenv("BLJ_PROJ")
-    if (path==""){
-        path = readline("Please provide a directory where new pipeline instances can be created.\n")
-        if(file.exists(path)){
-            setBljProj(path)
-        }
+    # have I already figured this out this session?
+    BLJ_PROJ=getOption("BLJ_PROJ")
+    if ( !isReadableValue(BLJ_PROJ) ){
+        # is it given in my config file ? if yes, use that!
+        config = system.file("config", "paths.properties", package = "BioLockR")
+        vals = read_props_file( config )
+        BLJ_PROJ = vals[["BLJ_PROJ"]]
     }
-    if (! file.exists(path)){
-        warning("BLJ_PROJ path must exist! See ?setBljProj")
+    if ( !isReadableValue(BLJ_PROJ) ){
+        # if its not there... is it in env ?
+        BLJ_PROJ = Sys.getenv("BLJ_PROJ")
     }
-    return(path)
+    if ( !isReadableValue(BLJ_JAR) || !file.exists(BLJ_JAR) ) {
+        message("Please use setBljProj() to set a valid location.")
+        stop("Invalid location for BioLockJ project directory:\n  ", BLJ_PROJ)
+    }else{
+        options(BLJ_PROJ=BLJ_PROJ) # remember for this sessions
+        return(BLJ_PROJ)
+    }
 }
