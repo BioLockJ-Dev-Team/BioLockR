@@ -7,7 +7,8 @@
 #' @return vector of module classpaths
 #' @export
 #'
-#' @seealso listModules
+#' @seealso listApiModules
+#' @seealso moduleInfo
 #'
 #' @examples
 #' listModules()

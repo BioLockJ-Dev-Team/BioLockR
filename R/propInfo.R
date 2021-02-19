@@ -12,6 +12,8 @@
 #' @export
 #'
 #' @examples
+#' propInfo()
+#'
 propInfo <- function(){
     args=c("propInfo")
     json_lines = callBioLockJApi(args)

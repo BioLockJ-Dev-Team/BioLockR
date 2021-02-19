@@ -37,3 +37,7 @@ listProps(module) for all available modules.
 \item \code{listProps}: 
 }}
 
+\examples{
+listProps()
+
+}

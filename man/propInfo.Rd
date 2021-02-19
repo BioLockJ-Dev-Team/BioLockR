@@ -52,6 +52,8 @@ Get Information about BioLockJ Properties
 describeProp("script.numThreads")
 #> "Used to reserve cluster resources and passed to any external application call that accepts a numThreads parameter."
 
+propInfo()
+
 propType("script.numThreads")
 #> [1] "integer"
 

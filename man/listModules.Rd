@@ -20,5 +20,7 @@ listModules()
 
 }
 \seealso{
-listModules
+listApiModules
+
+moduleInfo
 }

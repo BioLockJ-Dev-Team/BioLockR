@@ -18,6 +18,8 @@
 #' @export
 #'
 #' @examples
+#' listProps()
+#'
 listProps <- function(module=NULL){
     args = c("listProps")
     if ( !is.null(module) ){

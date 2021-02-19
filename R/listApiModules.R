@@ -4,7 +4,8 @@
 #'
 #' @inheritParams callBioLockJ
 #'
-#' @seealso list_modules
+#' @seealso listModules
+#' @seealso moduleInfo
 #'
 #' @return vector of module classpaths
 #' @export
