@@ -6,10 +6,9 @@
 #' @return Any and all results that the BioLockJ java program prints to standard out
 #'
 callBioLockJ <- function(args, externalModules=NULL){
-    JAR = getBljJar()
     CLASS = "biolockj/BioLockJ"
-    cp = getClassPath( externalModules )
-    CMD = utils::capture.output( cat("java -cp", JAR, CLASS, args) )
+    cp = getClassPath( externalModules ) # calls getBljJar()
+    CMD = utils::capture.output( cat("java -cp", cp, CLASS, args) )
     message(CMD)
     # return(system(CMD, intern = TRUE))
     return( system2("java",

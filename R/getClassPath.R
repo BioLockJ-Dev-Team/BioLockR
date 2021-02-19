@@ -9,9 +9,9 @@ getClassPath <- function(externalModules=NULL){
 
     # Add JAR file to class path
     if ( !is.null(externalModules)){
-        extras = list.files(path = externalModules, pattern=".jar")
+        extras = list.files(path = externalModules, pattern=".jar", full.names = TRUE)
         for (jar in extras ){
-            cp = paste0(cp, ":", "")
+            cp = paste0(cp, ":", jar)
         }
     }
 
