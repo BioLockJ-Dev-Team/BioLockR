@@ -33,5 +33,7 @@ isValidProp("script.numThreads", 8)
 #> TRUE
 isValidProp("script.numThreads", "apple")
 #> FALSE
+isValidProp("hardy", "har")
+#> NA
 
 }

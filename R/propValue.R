@@ -5,6 +5,12 @@
 #' @export
 #'
 #' @examples
+#' propValue("script.numThreads")
+#' #> "8"
+#'
+#' propValue("hardyHarHar") # unrecognized property
+#' #> ""
+#'
 propValue <- function(property, config=NULL, module=NULL, externalModules=NULL ){
     # Returns the value for that property given that config file (optional) or
     # no config file (ie the default value)

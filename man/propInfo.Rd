@@ -48,3 +48,17 @@ Get Information about BioLockJ Properties
 \item \code{propValue}: 
 }}
 
+\examples{
+describeProp("script.numThreads")
+#> "Used to reserve cluster resources and passed to any external application call that accepts a numThreads parameter."
+
+propType("script.numThreads")
+#> [1] "integer"
+
+propValue("script.numThreads")
+#> "8"
+
+propValue("hardyHarHar") # unrecognized property
+#> ""
+
+}

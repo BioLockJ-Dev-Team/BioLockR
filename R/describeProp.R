@@ -5,6 +5,9 @@
 #' @export
 #'
 #' @examples
+#' describeProp("script.numThreads")
+#' #> "Used to reserve cluster resources and passed to any external application call that accepts a numThreads parameter."
+#'
 describeProp <- function(property, module=NULL, externalModules=NULL ){
     # Returns a description of the property.
     # If a module is supplied, then the modules getDescription method is used.

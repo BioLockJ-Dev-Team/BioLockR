@@ -5,6 +5,9 @@
 #' @export
 #'
 #' @examples
+#' propType("script.numThreads")
+#' #> [1] "integer"
+#'
 propType <- function(property, module=NULL, externalModules=NULL ){
     # Returns the type expected for the property: String, list, integer, positive number, etc.
     # If a module is supplied, then the modules propType method is used.
