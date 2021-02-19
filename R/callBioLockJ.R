@@ -11,5 +11,8 @@ callBioLockJ <- function(args, external.modules=NULL){
     cp = getClassPath( external.modules )
     CMD = utils::capture.output( cat("java -cp", JAR, CLASS, args) )
     message(CMD)
-    return(system(CMD, intern = TRUE))
+    # return(system(CMD, intern = TRUE))
+    return( system2("java",
+                    args = strsplit(substring(CMD, 6), split=" ", fixed=TRUE)[[1]],
+                    env = paste0( "BLJ_PROJ=", getBljProj() )) )
 }
