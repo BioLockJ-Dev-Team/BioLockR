@@ -14,5 +14,6 @@ callBioLockJ <- function(args, externalModules=NULL){
     # return(system(CMD, intern = TRUE))
     return( system2("java",
                     args = strsplit(substring(CMD, 6), split=" ", fixed=TRUE)[[1]],
+                    stdout=TRUE,
                     env = paste0( "BLJ_PROJ=", getBljProj() )) )
 }

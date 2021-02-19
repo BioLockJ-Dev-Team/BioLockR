@@ -15,10 +15,10 @@ callBioLockJApi <- function(args, externalModules=NULL, useProj=FALSE){
     # return(system(CMD, intern = TRUE))
     args = strsplit(substring(CMD, 6), split=" ", fixed=TRUE)[[1]]
     if (useProj){
-        return( system2("java", args = args,
+        return( system2("java", args = args, stdout=TRUE,
                         env = paste0( "BLJ_PROJ=", getBljProj() )) )
     }else{
-        return( system2("java", args = args) )
+        return( system2("java", args = args, stdout=TRUE) )
     }
 
 }
