@@ -23,7 +23,7 @@ getBljProj <- function(){
         # if its not there... is it in env ?
         BLJ_PROJ = Sys.getenv("BLJ_PROJ")
     }
-    if ( !isReadableValue(BLJ_JAR) || !file.exists(BLJ_JAR) ) {
+    if ( !isReadableValue(BLJ_PROJ) || !file.exists(BLJ_PROJ) ) {
         message("Please use setBljProj() to set a valid location.")
         stop("Invalid location for BioLockJ project directory:\n  ", BLJ_PROJ)
     }else{
