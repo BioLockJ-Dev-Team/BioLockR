@@ -4,12 +4,12 @@
 \alias{callBioLockJ}
 \title{Call the BioLockJ java program}
 \usage{
-callBioLockJ(args, external.modules = NULL)
+callBioLockJ(args, externalModules = NULL)
 }
 \arguments{
 \item{args}{args to pass to BioLockJ java program}
 
-\item{external.modules}{file path to directory with external modules}
+\item{externalModules}{file path to directory with external modules}
 }
 \value{
 Any and all results that the BioLockJ java program prints to standard out

@@ -4,12 +4,12 @@
 \alias{callBioLockJApi}
 \title{Call the helper API of BioLockJ java program}
 \usage{
-callBioLockJApi(args, external.modules = NULL, useProj = FALSE)
+callBioLockJApi(args, externalModules = NULL, useProj = FALSE)
 }
 \arguments{
 \item{args}{args to pass to BioLockJ java program}
 
-\item{external.modules}{file path to directory with external modules}
+\item{externalModules}{file path to directory with external modules}
 
 \item{useProj}{boolean, should the vaue of getBljProj() be passed to the system call as an environment variable.
 Unlike the main BioLockJ command, most of the API commands do not use BLJ_PROJ, and can run before that value is set.}

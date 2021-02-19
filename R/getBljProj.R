@@ -6,7 +6,9 @@
 #' @export
 #'
 #' @examples
-#' getBljProj()
+#' # setBljProj("~/Documents/BioLockJ/pipelines")
+#' # getBljProj()
+#' # >[1] "~/Documents/BioLockJ/pipelines"
 #'
 getBljProj <- function(){
     # have I already figured this out this session?

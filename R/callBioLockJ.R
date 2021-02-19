@@ -1,14 +1,14 @@
 #' Call the BioLockJ java program
 #'
 #' @param args args to pass to BioLockJ java program
-#' @param external.modules file path to directory with external modules
+#' @param externalModules file path to directory with external modules
 #'
 #' @return Any and all results that the BioLockJ java program prints to standard out
 #'
-callBioLockJ <- function(args, external.modules=NULL){
+callBioLockJ <- function(args, externalModules=NULL){
     JAR = getBljJar()
     CLASS = "biolockj/BioLockJ"
-    cp = getClassPath( external.modules )
+    cp = getClassPath( externalModules )
     CMD = utils::capture.output( cat("java -cp", JAR, CLASS, args) )
     message(CMD)
     # return(system(CMD, intern = TRUE))

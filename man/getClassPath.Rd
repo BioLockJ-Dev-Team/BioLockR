@@ -4,10 +4,10 @@
 \alias{getClassPath}
 \title{Get Class Path for BioLockJ call}
 \usage{
-getClassPath(external.modules = NULL)
+getClassPath(externalModules = NULL)
 }
 \arguments{
-\item{external.modules}{optional path to directory containing jar files for additional modules}
+\item{externalModules}{optional path to directory containing jar files for additional modules}
 }
 \value{
 the class path string to use when calling BioLockJ

@@ -31,7 +31,9 @@ bljProj returns the path to the BioLockJ project directory (where new pipeline i
 # setBljJar("/path/to/BioLockJ/dist/BioLockJ.jar")
 # getBljJar()
 
-getBljProj()
+# setBljProj("~/Documents/BioLockJ/pipelines")
+# getBljProj()
+# >[1] "~/Documents/BioLockJ/pipelines"
 
 }
 \seealso{
