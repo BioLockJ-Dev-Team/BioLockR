@@ -13,21 +13,19 @@ setBljProj <- function( path, remember=TRUE, doublecheck=TRUE ){
         warning("path must be a valid file path.  There is not directory at location: ", path)
         return(FALSE)
     }else{
-        Sys.setenv(BLJ_PROJ=path)
+        options(BLJ_PROJ=path)
         if (remember){
-            home = Sys.getenv("HOME")
-            if (home == "") home = Sys.getenv("R_USER")
-            envFile = file.path(home, ".Renviron")
-            #
             confirmed = ! doublecheck
             if (doublecheck){
-                prompt = paste0("Path [", path, "] exists. \n Use this path for BLJ_PROJ in future R sessions ? y / n")
+                prompt = paste0("Path [", path, "] exists. \n Use this path for BioLockJ pipelines dir in future R sessions ? y / n \n")
                 response = readline(prompt)
                 confirmed = trimws( tolower(response) ) == "y"
             }
             if (confirmed){
-                line = paste0("BLJ_PROJ=", path)
-                write(line, file=envFile, append=TRUE)
+                config = system.file("config", "paths.properties", package = "BioLockR")
+                props = read_props_file(config)
+                props[["BLJ_PROJ"]] = path
+                write_properties(config, props)
             }
         }
     }
