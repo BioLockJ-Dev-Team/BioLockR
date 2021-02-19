@@ -37,7 +37,7 @@ getBljJar <- function(){
         message("Please use setBljJar() to set a valid location.")
         stop("Invalid location for BioLockJ jar file:\n  ", BLJ_JAR)
     }else{
-        options(BLJ_JAR=BLJ_JAR) # remember for this session
+        options(BLJ_JAR=BLJ_JAR) # remember for this sessions
         return(BLJ_JAR)
     }
 }
