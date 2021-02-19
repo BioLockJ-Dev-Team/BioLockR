@@ -27,5 +27,5 @@ moduleInfo <- function(externalModules=NULL){
         mi$properties = nameProperties(mi$properties)
         return(mi)
     })
-    return(moduleIn)
+    return(moduleIn[order(names(moduleIn))])
 }
