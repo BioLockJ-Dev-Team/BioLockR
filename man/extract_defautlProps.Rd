@@ -4,10 +4,10 @@
 \alias{extract_defautlProps}
 \title{Separate the simple properties from chained properties files}
 \usage{
-extract_defautlProps(filepath)
+extract_defautlProps(values)
 }
 \arguments{
-\item{filepath}{character string, exactly one, giving the path to the file to read.}
+\item{values}{named property values, often the result of read_properties or read_props_file}
 }
 \value{
 returns a list of 2:

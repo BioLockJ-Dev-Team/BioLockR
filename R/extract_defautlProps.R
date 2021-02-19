@@ -1,6 +1,6 @@
 #' Separate the simple properties from chained properties files
 #'
-#' @inheritParams read_props_file
+#' @param values named property values, often the result of read_properties or read_props_file
 #'
 #' @return returns a list of 2:
 #' where the first element ("defaultProps") is a list of defaultProps files (NULL if there is no defaultProps property)
@@ -15,12 +15,11 @@
 #' ex2 = system.file("extdata", "example_no_defaults.properties", package = "BioLockR")
 #' extract_defautlProps(ex2)
 #'
-extract_defautlProps <- function( filepath ){
-    vals = read_props_file( filepath )
+extract_defautlProps <- function( values ){
     ret = list(defaultProps=c(), properties=c())
-    if ( length(vals) > 0 ){
-        ret$properties=vals[names(vals) != "pipeline.defaultProps"]
-        chainsTo = vals["pipeline.defaultProps"]
+    if ( length(values) > 0 ){
+        ret$properties=values[names(values) != "pipeline.defaultProps"]
+        chainsTo = values["pipeline.defaultProps"]
         if ( isReadableValue(chainsTo)){
             ret$defaultProps = parseListProp(chainsTo)
         }
