@@ -8,7 +8,6 @@
 #' @seealso parseListProp
 #'
 #' @examples
-#'
 # printListProp(c("one", "two", "three"))
 # #> [1] "one, two, three"
 #

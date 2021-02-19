@@ -15,9 +15,6 @@ a single string representing the set of values as a comma-separated list
 \description{
 Assemble a BioLockJ list property
 }
-\examples{
-
-}
 \seealso{
 parseListProp
 }
