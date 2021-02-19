@@ -22,7 +22,7 @@ setBljProj <- function( path, remember=TRUE, doublecheck=TRUE ){
                 confirmed = trimws( tolower(response) ) == "y"
             }
             if (confirmed){
-                config = system.file("config", "paths.properties", package = "BioLockR")
+                config = get_config_file_path()
                 props = read_props_file(config)
                 props[["BLJ_PROJ"]] = path
                 write_properties(config, props)

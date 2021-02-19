@@ -22,7 +22,7 @@ getBljJar <- function(){
     BLJ_JAR=getOption("BLJ_JAR")
     if ( !isReadableValue(BLJ_JAR) ){
         # is it given in my config file ? if yes, use that!
-        config = system.file("config", "paths.properties", package = "BioLockR")
+        config = get_config_file_path()
         vals = read_props_file( config )
         BLJ_JAR = vals[["BLJ_JAR"]]
     }
