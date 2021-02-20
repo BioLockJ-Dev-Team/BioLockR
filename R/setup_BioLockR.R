@@ -24,7 +24,7 @@
 #' @export
 #'
 setup_BioLockR <- function(){
-    jar = tryCatch(getBljJar(), error=function(...){""})
+    jar = tryCatch(get_BLJ_JAR(), error=function(...){""})
     proj = tryCatch(getBljProj(), error=function(...){""})
 
     cat(c("The BioLockR package is way to interact with the BioLockJ java program.",

@@ -1,15 +1,15 @@
 #'
 #' @describeIn config_BioLockR get the BioLockJ.jar file path
 #'
-#' @return getBljJar: The path to the BioLockJ jar file
+#' @return get_BLJ_JAR: The path to the BioLockJ jar file
 #'
 #' @export
 #'
 #' @examples
 #' # set_BLJ_JAR("/path/to/BioLockJ/dist/BioLockJ.jar")
-#' # getBljJar()
+#' # get_BLJ_JAR()
 #'
-getBljJar <- function(){
+get_BLJ_JAR <- function(){
     # have I already figured this out this session?
     BLJ_JAR=getOption("BLJ_JAR")
     if ( !isReadableValue(BLJ_JAR) ){

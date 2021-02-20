@@ -26,7 +26,7 @@
 #' variables, while a session launched in Rstudio does not. In this case, open R from a terminal
 #' and run:
 #' library(BioLockR)
-#' set_BLJ_JAR(getBljJar(), remember=TRUE)
+#' set_BLJ_JAR(get_BLJ_JAR(), remember=TRUE)
 #' Now subsequent sessions in Rstudio will have the jar path.
 #'
 #' If you update your BioLockJ location, use set_BLJ_JAR("", remember=TRUE) and then repeat the above steps.

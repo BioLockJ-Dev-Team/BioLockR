@@ -7,7 +7,7 @@
 #'
 callBioLockJ <- function(args, externalModules=NULL){
     CLASS = "biolockj/BioLockJ"
-    cp = getClassPath( externalModules ) # calls getBljJar()
+    cp = getClassPath( externalModules )
     CMD = utils::capture.output( cat("java -cp", cp, CLASS, args) )
     message(CMD)
     # return(system(CMD, intern = TRUE))

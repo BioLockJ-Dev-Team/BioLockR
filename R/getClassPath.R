@@ -5,7 +5,7 @@
 #' @return the class path string to use when calling BioLockJ
 #'
 getClassPath <- function(externalModules=NULL){
-    cp = getBljJar()
+    cp = get_BLJ_JAR()
 
     # Add JAR file to class path
     if ( !is.null(externalModules)){
