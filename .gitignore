@@ -3,3 +3,5 @@
 .RData
 inst/java/**
 .DS_Store
+/inst/config/paths.properties
+
