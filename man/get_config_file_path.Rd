@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_config_file_path.R
 \name{get_config_file_path}
 \alias{get_config_file_path}
-\title{Title}
+\title{Get BioLockR settings file}
 \usage{
 get_config_file_path()
 }
@@ -10,5 +10,6 @@ get_config_file_path()
 
 }
 \description{
-Title
+Get the path to the file where the BioLockR package saves user preferences,
+namely the path to BLJ_JAR and BLJ_PROJ.
 }

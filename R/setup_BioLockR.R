@@ -14,19 +14,18 @@
 #' future sessions (unless doublecheck=FALSE).  This interactive session is designed for an initial setup,
 #' and automatically uses remember=TRUE and doublecheck=FALSE when seting BLJ_JAR and BLJ_PROJ.
 #'
+#' Unlike setBljJar(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
+#' This check is skipped if java is not accessible.
+#'
 #' @seealso setBljJar
 #' @seealso setBljProj
 #'
-#' @return
-#' @export
+#' @return no returned value
+#' @export setup_BioLockR
 #'
 setup_BioLockR <- function(){
-    config = get_config_file_path()
-    vals = read_props_file( config )
     jar = tryCatch(getBljJar(), error=function(...){""})
-    vals["BLJ_JAR"] = jar
     proj = tryCatch(getBljProj(), error=function(...){""})
-    vals["BLJ_PROJ"] = proj
 
     cat(c("The BioLockR package is way to interact with the BioLockJ java program.",
           "At a minimim, it requires java and the path to the jar file in the BioLockJ folder:",
@@ -35,97 +34,144 @@ setup_BioLockR <- function(){
           "Checking for java..."), sep="\n")
     Sys.sleep(.5)
 
-    javaVersion = tryCatch({
-        system2("java",  "-version", stdout = TRUE, stderr = TRUE)
-    }, error=function(...){""})
-    if ( !any(javaVersion != "")){ #ie, if( javaVersion == "" )
-        cat("There was problem accessing java. Do you want to continue with settup anyway?", sep="\n")
-        res = readline("[ y / n ]")
-        if (tolower(res) != "y") {
-            #TODO: Add something about where to find help with this.
-            cat("Goodbye.")
-            return()
-        }
-    }else{
-        cat(c("Found java...", javaVersion), sep="\n")
-    }
+    testWithJava = checkJava()
+
     Sys.sleep(1)
 
-    cat(c(" ",
-    "BLJ_JAR",
-    "If you have installed BioLockJ, you can get the path to it by typing",
-    "\"echo $BLJ\" in a terminal window; R sessions may not detect this variable.",
-    " ",
-    "Please enter the path to update the BioLockJ jar file, BLJ_JAR:",
-    "(leave blank to keep current value)",
-    paste("[", jar, "]") ), sep="\n")
-    response = readline("")
+    response = promptForJar(jar)
 
-    if (trimws(response) != ""){
-        # TODO: verify that this is a jar file, maybe call it and get the version.
-        vals["BLJ_JAR"] = response
-        # being in setup implies that it should be remembered
-        setBljJar(response, remember = TRUE, doublecheck = FALSE)
-        message("Got it!")
+    if (response == ""){
+        ignoreValue()
     }else{
-        message("Keeping the existing value.")
+        newJar = response
+        newJar = BLJisOK(newJar)
+        passing = file.exists(newJar)
+        if (!passing) ignoreValue("hmm... That does not look like a real file.")
+        if ( passing && testWithJava ) passing = testJar(newJar=newJar, oldJar=jar)
+        # set the jar file
+        if (passing){
+            didIt = setBljJar(newJar, remember = TRUE, doublecheck = FALSE)
+            if (didIt){
+                if (!testWithJava) message("Got it! (set but not tested)")
+            }else{
+                ignoreValue("hmm... That's no good. See ?setBljJar")
+            }
+        }
     }
     cat("You can update this path at any time, see ?setBljJar ")
     Sys.sleep(2)
 
-    cat(c(" "," ",
-    "BLJ_PROJ",
-    "If you have installed BioLockJ, you can get the path to it by typing",
-    "\"echo $BLJ_PROJ\" in a terminal window; R sessions may not detect this variable.",
-    "Your BLJ_PROJ folder is where new pipeline instances are created.",
-    "It can be set to any writable directory on your machine; and should be somewhere you can access easily.",
-    " ",
-    "Please enter the path to update the BLJ_PROJ directory:",
-    "(leave blank to keep current value)",
-    paste("[", proj, "]")), sep="\n")
-    responseP = readline("")
+    projInfo()
+    responseP = promptForProj(proj)
 
-    if (trimws(responseP) != ""){
+    if (trimws(responseP) == ""){
+        ignoreValue()
+    }else{
         if ( dir.exists(responseP) ){
-            vals["BLJ_PROJ"] = responseP
             setBljProj(responseP, remember = TRUE, doublecheck = FALSE)
         }else{
             message("hmm... that's no good.  This value needs to be a directory that exists.")
-            cat(c("Please enter the path to update the BLJ_PROJ directory:",
-            "(leave blank to keep current value)",
-            paste("[", proj, "]")), sep="\n")
-            responseP2 = readline("")
+            responseP2 = promptForProj(proj)
             if (trimws(responseP2) != ""){
                 if ( dir.exists(responseP2) ){
-                    vals["BLJ_PROJ"] = responseP2
                     setBljProj(responseP2, remember = TRUE, doublecheck = FALSE)
                     cat("Got it!")
                 }else{
-                    message("Maybe try again later.  Most functions in BioLockR do not require BLJ_PROJ.")
+                    ignoreValue("Maybe try again later.  Most functions in BioLockR do not require BLJ_PROJ.")
                 }
+            }else{
+                ignoreValue()
             }
         }
-    }else{
-        message("Keeping the existing value.")
     }
     cat("You can update this path at any time, see ?setBljProj ")
     Sys.sleep(1)
 
-
-    # # TODO: review any other configurations that have been included.
-    # others = setdiff(names(vals), c("BLJ_JAR", "BLJ_PROJ"))
-    # if (length(others) > 0 ){
-    #     cat("Review other paths configured for the BioLockR package:")
-    #     for (name in others){
-    #
-    #     }
-    # }
-    #
-    # # if there are other properties, then write them.
-    # # with no other props, this currently redundant with saving via setBlj* functions
-    write_properties(config, vals)
-
     cat(c(" "," ","Done with setup."), sep="\n")
 }
 
+checkJava <- function(){
+    javaVersion = tryCatch({
+        system2("java",  "-version", stdout = TRUE, stderr = TRUE)
+    }, error=function(...){""})
+    if ( !any(javaVersion != "")){ #ie, if( javaVersion == "" )
+        testWithJava = FALSE
+        message("There was problem accessing java. Do you want to continue with settup anyway?")
+        res = readline("[ y / n ] ")
+        if (tolower(res) != "y") {
+            #TODO: Add something about where to find help with this.
+            return(cat("Goodbye."))
+        }else{
+            message("Ok. We'll go ahead set up these paths now anyway.")
+        }
+    }else{
+        testWithJava = TRUE
+        cat(c("Found java...", javaVersion), sep="\n")
+    }
+    return(testWithJava)
+}
 
+promptForJar <- function(jar){
+    cat(c(" ",
+          "BLJ_JAR",
+          "If you have installed BioLockJ, you can get the path to it by typing",
+          "\"echo $BLJ\" in a terminal window; R sessions may not detect this variable.",
+          " ",
+          "Please enter the path to update the BioLockJ jar file, BLJ_JAR:",
+          "(leave blank to keep current value)",
+          paste("[", jar, "]") ), sep="\n")
+    response = trimws(readline("BLJ_JAR: "))
+    return(response)
+}
+
+projInfo <- function(){
+    cat(c(" "," ",
+          "BLJ_PROJ",
+          "If you have installed BioLockJ, you can get the path to it by typing",
+          "\"echo $BLJ_PROJ\" in a terminal window; R sessions may not detect this variable.",
+          "Your BLJ_PROJ folder is where new pipeline instances are created.",
+          "It can be set to any writable directory on your machine; and should be somewhere you can access easily."),
+          sep="\n")
+}
+promptForProj <- function(proj){
+    cat(c(" ",
+          "Please enter the path to update the BLJ_PROJ directory:",
+          "(leave blank to keep current value)",
+          paste("[", proj, "]")), sep="\n")
+    responseP = readline("BLJ_PROJ: ")
+    return(responseP)
+}
+
+BLJisOK <- function(newJar){
+    if (dir.exists(newJar) && file.exists(file.path(newJar, "dist", "BioLockJ.jar"))){
+        # User just pasted $BLJ not $BLJ/dist/BioLockJ.jar... that's ok.
+        newJar = file.path(newJar, "dist", "BioLockJ.jar")
+        message(paste("That makes BLJ_JAR:", newJar))
+    }
+    return(newJar)
+}
+
+testJar <- function(newJar, oldJar){
+    didSet = setBljJar(newJar, remember = FALSE)
+    if (didSet){
+        newVersion = tryCatch({
+            suppressMessages( biolockjVersion() )
+        }, error=function(...){
+            setBljJar(oldJar, remember = FALSE) # restore
+            return("")})
+    }else{
+        newVersion = ""
+    }
+    passing = startsWith(newVersion, "BioLockJ v")
+    if (didSet && passing){
+        message("Great! We're set up to use ", newVersion)
+    }else{
+        ignoreValue("hmm... That doesn't seem right.")
+    }
+    return(passing)
+}
+
+ignoreValue <- function(msg=NULL){
+    if (!is.null(msg)) message(msg)
+    message("Keeping the existing value.")
+}
