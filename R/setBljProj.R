@@ -1,8 +1,8 @@
-#' Set BioLockJ Essential File Paths
 #'
-#' @describeIn setBljJar
+#' @describeIn config_BioLockR set the BioLockJ projects directory path
 #'
-#' @return
+#' @return setBljProj: boolean; TRUE if path is set for current session
+#'
 #' @export
 #'
 #' @examples

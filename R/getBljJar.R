@@ -1,15 +1,7 @@
-#' Get BioLockJ essential file paths
 #'
-#' Get the essential file paths associated with the BioLockJ java program.
+#' @describeIn config_BioLockR get the BioLockJ.jar file path
 #'
-#' @details
-#' getBljJar returns the path to the jar file of the BioLockJ java program based on either BLJ_JAR (if set) or BLJ.
-#'
-#' bljProj returns the path to the BioLockJ project directory (where new pipeline instances are created) based on environemnt variable BLJ_PROJ.
-#'
-#' @seealso setBljJar, setBljProj
-#'
-#' @return The path to the BioLockJ jar file
+#' @return getBljJar: The path to the BioLockJ jar file
 #'
 #' @export
 #'

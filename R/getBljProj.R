@@ -1,8 +1,8 @@
-#' Get BioLockJ essential file paths
 #'
-#' @describeIn getBljJar
+#' @describeIn config_BioLockR get the BioLockJ projects directory path
 #'
-#' @return the path to the BioLockJ project directory
+#' @return getBljProj: the path to the BioLockJ project directory
+#'
 #' @export
 #'
 #' @examples

@@ -21,7 +21,7 @@
 #' @seealso setBljProj
 #'
 #' @return no returned value
-#' @export setup_BioLockR
+#' @export
 #'
 setup_BioLockR <- function(){
     jar = tryCatch(getBljJar(), error=function(...){""})
