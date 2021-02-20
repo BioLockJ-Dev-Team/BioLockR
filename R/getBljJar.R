@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' # setBljJar("/path/to/BioLockJ/dist/BioLockJ.jar")
+#' # set_BLJ_JAR("/path/to/BioLockJ/dist/BioLockJ.jar")
 #' # getBljJar()
 #'
 getBljJar <- function(){
@@ -26,7 +26,7 @@ getBljJar <- function(){
         }
     }
     if ( !isReadableValue(BLJ_JAR) || !file.exists(BLJ_JAR) ) {
-        message("Please use setBljJar() to set a valid location.")
+        message("Please use set_BLJ_JAR() to set a valid location.")
         stop("Invalid location for BioLockJ jar file:\n  ", BLJ_JAR)
     }else{
         options(BLJ_JAR=BLJ_JAR) # remember for this sessions

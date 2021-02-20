@@ -8,16 +8,16 @@
 #' .../BioLockJ/dist/BioLockJ.jar
 #'
 #' This command launches an interactive mode that promps the user for the required settings.
-#' The same setup can be done prgrammatically by using setBljJar() and setBljProj() with doublecheck=FALSE.
+#' The same setup can be done prgrammatically by using set_BLJ_JAR() and setBljProj() with doublecheck=FALSE.
 #'
-#' setBljJar() and setBljProj() will prompt about using the settings for
+#' set_BLJ_JAR() and setBljProj() will prompt about using the settings for
 #' future sessions (unless doublecheck=FALSE).  This interactive session is designed for an initial setup,
 #' and automatically uses remember=TRUE and doublecheck=FALSE when seting BLJ_JAR and BLJ_PROJ.
 #'
-#' Unlike setBljJar(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
+#' Unlike set_BLJ_JAR(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
 #' This check is skipped if java is not accessible.
 #'
-#' @seealso setBljJar
+#' @seealso set_BLJ_JAR
 #' @seealso setBljProj
 #'
 #' @return no returned value
@@ -50,15 +50,15 @@ setup_BioLockR <- function(){
         if ( passing && testWithJava ) passing = testJar(newJar=newJar, oldJar=jar)
         # set the jar file
         if (passing){
-            didIt = setBljJar(newJar, remember = TRUE, doublecheck = FALSE)
+            didIt = set_BLJ_JAR(newJar, remember = TRUE, doublecheck = FALSE)
             if (didIt){
                 if (!testWithJava) message("Got it! (set but not tested)")
             }else{
-                ignoreValue("hmm... That's no good. See ?setBljJar")
+                ignoreValue("hmm... That's no good. See ?set_BLJ_JAR")
             }
         }
     }
-    cat("You can update this path at any time, see ?setBljJar ")
+    cat("You can update this path at any time, see ?set_BLJ_JAR ")
     Sys.sleep(2)
 
     projInfo()
@@ -152,12 +152,12 @@ BLJisOK <- function(newJar){
 }
 
 testJar <- function(newJar, oldJar){
-    didSet = setBljJar(newJar, remember = FALSE)
+    didSet = set_BLJ_JAR(newJar, remember = FALSE)
     if (didSet){
         newVersion = tryCatch({
             suppressMessages( biolockjVersion() )
         }, error=function(...){
-            setBljJar(oldJar, remember = FALSE) # restore
+            set_BLJ_JAR(oldJar, remember = FALSE) # restore
             return("")})
     }else{
         newVersion = ""

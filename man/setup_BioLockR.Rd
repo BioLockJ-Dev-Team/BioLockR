@@ -18,17 +18,17 @@ At a minimim, it requires java and the path to the jar file in the BioLockJ fold
 .../BioLockJ/dist/BioLockJ.jar
 
 This command launches an interactive mode that promps the user for the required settings.
-The same setup can be done prgrammatically by using setBljJar() and setBljProj() with doublecheck=FALSE.
+The same setup can be done prgrammatically by using set_BLJ_JAR() and setBljProj() with doublecheck=FALSE.
 
-setBljJar() and setBljProj() will prompt about using the settings for
+set_BLJ_JAR() and setBljProj() will prompt about using the settings for
 future sessions (unless doublecheck=FALSE).  This interactive session is designed for an initial setup,
 and automatically uses remember=TRUE and doublecheck=FALSE when seting BLJ_JAR and BLJ_PROJ.
 
-Unlike setBljJar(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
+Unlike set_BLJ_JAR(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
 This check is skipped if java is not accessible.
 }
 \seealso{
-setBljJar
+set_BLJ_JAR
 
 setBljProj
 }

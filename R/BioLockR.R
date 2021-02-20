@@ -37,12 +37,7 @@
 #' extract_defautlProps
 #' @seealso read_properties
 #'
-#' @section connecting to BioLockJ:
-#'
-#' setup_BioLockR
-#' setBljJar / getBljJar
-#' setBljProj / getBljProj
-#' @seealso setup_BioLockR
+#' @seealso coinfg_BioLockR
 #'
 #' @docType package
 #' @name BioLockR

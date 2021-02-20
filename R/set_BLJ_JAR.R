@@ -1,14 +1,14 @@
 #'
 #' @describeIn config_BioLockR set the BioLockJ.jar file path
 #'
-#' @return setBljJar: boolean; TRUE if path is set for current session
+#' @return set_BLJ_JAR: boolean; TRUE if path is set for current session
 #'
 #' @export
 #'
 #' @examples
-#' setBljJar("path/to/BioLockJ/dist/BioLockJ.jar")
+#' set_BLJ_JAR("path/to/BioLockJ/dist/BioLockJ.jar")
 #'
-setBljJar <- function( path, remember=TRUE, doublecheck=TRUE ){
+set_BLJ_JAR <- function( path, remember=TRUE, doublecheck=TRUE ){
     if (! file.exists(path)){
         warning("`path` must be a valid file path.  File does not exist: ", path)
         return(FALSE)

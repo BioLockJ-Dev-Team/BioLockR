@@ -43,18 +43,10 @@ write_properties
 extract_defautlProps
 }
 
-\section{connecting to BioLockJ}{
-
-
-setup_BioLockR
-setBljJar / getBljJar
-setBljProj / getBljProj
-}
-
 \seealso{
 listUploads
 
 read_properties
 
-setup_BioLockR
+coinfg_BioLockR
 }
