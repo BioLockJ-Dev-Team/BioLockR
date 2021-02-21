@@ -2,25 +2,12 @@
 #'
 #' This command launches an interactive mode that promps the user for the required settings.
 #'
-#' @details
-#' The BioLockR package is way to interact with the BioLockJ java program.
-#' At a minimim, it requires java and the path to the jar file in the BioLockJ folder:
-#' .../BioLockJ/dist/BioLockJ.jar
-#'
-#' This command launches an interactive mode that promps the user for the required settings.
-#' The same setup can be done prgrammatically by using set_BLJ_JAR() and setBljProj() with doublecheck=FALSE.
-#'
-#' set_BLJ_JAR() and setBljProj() will prompt about using the settings for
-#' future sessions (unless doublecheck=FALSE).  This interactive session is designed for an initial setup,
-#' and automatically uses remember=TRUE and doublecheck=FALSE when seting BLJ_JAR and BLJ_PROJ.
-#'
-#' Unlike set_BLJ_JAR(), this method checks for java and also tests the jar file by attempting to get the BioLockJ version from it.
-#' This check is skipped if java is not accessible.
+#' @describeIn config_BioLockR interactively set all configurations.
 #'
 #' @seealso set_BLJ_JAR
 #' @seealso setBljProj
 #'
-#' @return no returned value
+#' @return setup_BioLockR: no returned value
 #' @export
 #'
 setup_BioLockR <- function(){
