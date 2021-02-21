@@ -1,16 +1,16 @@
 #'
 #' @describeIn setup_BioLockR get the BioLockJ projects directory path
 #'
-#' @return getBljProj: the path to the BioLockJ project directory
+#' @return get_BLJ_PROJ: the path to the BioLockJ project directory
 #'
 #' @export
 #'
 #' @examples
 #' # setBljProj("~/Documents/BioLockJ/pipelines")
-#' # getBljProj()
+#' # get_BLJ_PROJ()
 #' # >[1] "~/Documents/BioLockJ/pipelines"
 #'
-getBljProj <- function(){
+get_BLJ_PROJ <- function(){
     # have I already figured this out this session?
     BLJ_PROJ=getOption("BLJ_PROJ")
     if ( !isReadableValue(BLJ_PROJ) ){

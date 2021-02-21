@@ -6,7 +6,7 @@
 #'
 last_pipeline <-function(){
     args = "last-pipeline"
-    if ( !file.exists( getBljProj() ) ){
+    if ( !file.exists( get_BLJ_PROJ() ) ){
         message("This method depends on the BLJ_PROJ variable.")
     }
     callBioLockJApi(args, useProj=TRUE)

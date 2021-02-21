@@ -1,5 +1,4 @@
-#' Setup required file paths
-#' Configure BioLockR
+#' Setup BioLockR to Reach BioLockJ
 #'
 #' @description
 #' Set BioLockJ Essential File Paths
@@ -51,7 +50,7 @@
 #'
 setup_BioLockR <- function(){
     jar = tryCatch(get_BLJ_JAR(), error=function(...){""})
-    proj = tryCatch(getBljProj(), error=function(...){""})
+    proj = tryCatch(get_BLJ_PROJ(), error=function(...){""})
 
     cat(c("The BioLockR package is way to interact with the BioLockJ java program.",
           "At a minimim, it requires java and the path to the jar file in the BioLockJ folder:",
