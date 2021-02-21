@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' # setBljProj("~/Documents/BioLockJ/pipelines")
+#' # set_BLJ_PROJ("~/Documents/BioLockJ/pipelines")
 #' # get_BLJ_PROJ()
 #' # >[1] "~/Documents/BioLockJ/pipelines"
 #'
@@ -24,7 +24,7 @@ get_BLJ_PROJ <- function(){
         BLJ_PROJ = Sys.getenv("BLJ_PROJ")
     }
     if ( !isReadableValue(BLJ_PROJ) || !file.exists(BLJ_PROJ) ) {
-        message("Please use setBljProj() to set a valid location.")
+        message("Please use set_BLJ_PROJ() to set a valid location.")
         stop("Invalid location for BioLockJ project directory:\n  ", BLJ_PROJ)
     }else{
         options(BLJ_PROJ=BLJ_PROJ) # remember for this sessions

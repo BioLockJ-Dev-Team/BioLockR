@@ -4,7 +4,7 @@
 #' Set BioLockJ Essential File Paths
 #'
 #' @param path
-#' a file path to the BioLockJ jar file (set_BLJ_JAR()) to the BioLockJ project directory (setBljProj).
+#' a full file path. Location must already exist.
 #' @param remember
 #' TRUE/FALSE: Should this value be remembered for future sessions.
 #' If true, the value is appended to the $HOME/.Renviron file, which can be edited
@@ -18,13 +18,14 @@
 #' At a minimim, it requires java and the path to the jar file in the BioLockJ folder:
 #' .../BioLockJ/dist/BioLockJ.jar
 #'
-#' set_BLJ_JAR and setBljProj set variables BLJ_JAR and BLJ_PROJ respectively.
+#' set_BLJ_JAR and set_BLJ_PROJ set variables BLJ_JAR and BLJ_PROJ respectively.
+#' These values can be retrieved via set_BLJ_JAR and set_BLJ_PROJ in the same session
+#' and (if _remember=TRUE_ in the set method) in later sessions.
 #'
-#' setup_BioLockR
-#' setup_BioLockR() launches an interactive mode that promps the user for the required settings.
-#' The same setup can be done prgrammatically by using set_BLJ_JAR() and setBljProj() with doublecheck=FALSE.
+#' **setup_BioLockR()** launches an interactive mode that promps the user for the required settings.
+#' The same setup can be done prgrammatically by using set_BLJ_JAR() and set_BLJ_PROJ() with _doublecheck=FALSE_.
 #'
-#' set_BLJ_JAR() and setBljProj() will prompt about using the settings for
+#' set_BLJ_JAR() and set_BLJ_PROJ() will prompt about using the settings for
 #' future sessions (unless doublecheck=FALSE).  This interactive session is designed for an initial setup,
 #' and automatically uses remember=TRUE and doublecheck=FALSE when seting BLJ_JAR and BLJ_PROJ.
 #'
@@ -42,8 +43,6 @@
 #' @describeIn setup_BioLockR launch interactive setup mode
 #'
 #' @return
-#' "get_*" methods return a file path.
-#' "set_*" methods, return boolean; TRUE if the value is set for that property for the current session
 #' setup_BioLockR: no return value
 #'
 #' @export
@@ -93,13 +92,13 @@ setup_BioLockR <- function(){
         ignoreValue()
     }else{
         if ( dir.exists(responseP) ){
-            setBljProj(responseP, remember = TRUE, doublecheck = FALSE)
+            set_BLJ_PROJ(responseP, remember = TRUE, doublecheck = FALSE)
         }else{
             message("hmm... that's no good.  This value needs to be a directory that exists.")
             responseP2 = promptForProj(proj)
             if (trimws(responseP2) != ""){
                 if ( dir.exists(responseP2) ){
-                    setBljProj(responseP2, remember = TRUE, doublecheck = FALSE)
+                    set_BLJ_PROJ(responseP2, remember = TRUE, doublecheck = FALSE)
                     cat("Got it!")
                 }else{
                     ignoreValue("Maybe try again later.  Most functions in BioLockR do not require BLJ_PROJ.")
@@ -109,7 +108,7 @@ setup_BioLockR <- function(){
             }
         }
     }
-    cat("You can update this path at any time, see ?setBljProj ")
+    cat("You can update this path at any time, see ?set_BLJ_PROJ ")
     Sys.sleep(1)
 
     cat(c(" "," ","Done with setup."), sep="\n")

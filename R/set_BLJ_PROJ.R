@@ -1,14 +1,14 @@
 #'
 #' @describeIn setup_BioLockR set the BioLockJ projects directory path
 #'
-#' @return setBljProj: boolean; TRUE if path is set for current session
+#' @return set_BLJ_PROJ: boolean; TRUE if path is set for current session
 #'
 #' @export
 #'
 #' @examples
-#' setBljProj( "path/to/projects/dir" )
+#' set_BLJ_PROJ( "path/to/projects/dir" )
 #'
-setBljProj <- function( path, remember=TRUE, doublecheck=TRUE ){
+set_BLJ_PROJ <- function( path, remember=TRUE, doublecheck=TRUE ){
     if (! file.exists(path)){
         warning("path must be a valid file path.  There is not directory at location: ", path)
         return(FALSE)
