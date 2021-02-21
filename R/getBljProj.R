@@ -1,5 +1,5 @@
 #'
-#' @describeIn config_BioLockR get the BioLockJ projects directory path
+#' @describeIn setup_BioLockR get the BioLockJ projects directory path
 #'
 #' @return getBljProj: the path to the BioLockJ project directory
 #'

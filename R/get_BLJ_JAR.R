@@ -1,5 +1,5 @@
 #'
-#' @describeIn config_BioLockR get the BioLockJ.jar file path
+#' @describeIn setup_BioLockR get the BioLockJ.jar file path
 #'
 #' @return get_BLJ_JAR: The path to the BioLockJ jar file
 #'

@@ -1,5 +1,5 @@
 #'
-#' @describeIn config_BioLockR set the BioLockJ.jar file path
+#' @describeIn setup_BioLockR set the BioLockJ.jar file path
 #'
 #' @return set_BLJ_JAR: boolean; TRUE if path is set for current session
 #'

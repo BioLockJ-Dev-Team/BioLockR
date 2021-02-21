@@ -1,5 +1,5 @@
 #'
-#' @describeIn config_BioLockR set the BioLockJ projects directory path
+#' @describeIn setup_BioLockR set the BioLockJ projects directory path
 #'
 #' @return setBljProj: boolean; TRUE if path is set for current session
 #'
