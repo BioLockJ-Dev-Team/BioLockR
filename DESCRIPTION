@@ -1,6 +1,6 @@
 Package: BioLockR
 Title: R Access to the BioLockJ-API
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Ivory",
            family = "Blakley",
