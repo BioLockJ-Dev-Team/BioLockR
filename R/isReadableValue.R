@@ -18,5 +18,15 @@
 #' #> TRUE
 #'
 isReadableValue <- function( value ){
-    return( !is.null(value) && !is.na(value) && length(value) > 0 && nchar(value) > 0 )
+    readable = !is.null(value) && !is.na(value) && length(value) > 0
+    if (readable){
+        if (length(value) == 0) {
+            readable = FALSE
+        }else if(length(value) == 1){
+            if (nchar(value) == 0) readable = FALSE
+        }else if(length(value) > 1){
+            readable = sapply(value, isReadableValue)
+        }
+    }
+    return( readable )
 }
