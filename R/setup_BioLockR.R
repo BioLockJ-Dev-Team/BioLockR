@@ -65,6 +65,7 @@ setup_BioLockR <- function(){
     response = promptForJar(jar)
 
     if (response == ""){
+        set_BLJ_JAR(jar, remember = TRUE, doublecheck = FALSE)
         ignoreValue()
     }else{
         newJar = response
@@ -89,6 +90,7 @@ setup_BioLockR <- function(){
     responseP = promptForProj(proj)
 
     if (trimws(responseP) == ""){
+        set_BLJ_PROJ(proj, remember = TRUE, doublecheck = FALSE)
         ignoreValue()
     }else{
         if ( dir.exists(responseP) ){
@@ -104,6 +106,7 @@ setup_BioLockR <- function(){
                     ignoreValue("Maybe try again later.  Most functions in BioLockR do not require BLJ_PROJ.")
                 }
             }else{
+                set_BLJ_PROJ(proj, remember = TRUE, doublecheck = FALSE)
                 ignoreValue()
             }
         }
@@ -116,9 +119,10 @@ setup_BioLockR <- function(){
 
 checkJava <- function(){
     javaVersion = tryCatch({
-        system2("java",  "-version", stdout = TRUE, stderr = TRUE)
+        suppressWarnings(system2("java",  "-version", stdout = TRUE, stderr = TRUE))
     }, error=function(...){""})
-    if ( !any(javaVersion != "")){ #ie, if( javaVersion == "" )
+    if ( !any(javaVersion != "" ||
+              attributes(javaVersion)$status) > 0){ #ie, if( javaVersion == "" )
         testWithJava = FALSE
         message("There was problem accessing java. Do you want to continue with settup anyway?")
         res = readline("[ y / n ] ")
