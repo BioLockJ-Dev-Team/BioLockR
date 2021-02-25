@@ -3,7 +3,7 @@
 #' Get the path to the file where the BioLockR package saves user preferences,
 #' namely the path to BLJ_JAR and BLJ_PROJ.
 #'
-#' @return
+#' @return file path where package variables are stored
 #'
 get_config_file_path <- function(){
     dirName = "config"

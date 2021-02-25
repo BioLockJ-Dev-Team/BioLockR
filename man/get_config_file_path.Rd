@@ -7,7 +7,7 @@
 get_config_file_path()
 }
 \value{
-
+file path where package variables are stored
 }
 \description{
 Get the path to the file where the BioLockR package saves user preferences,
