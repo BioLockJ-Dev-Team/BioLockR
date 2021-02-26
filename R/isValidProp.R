@@ -25,7 +25,7 @@
 #' #> NA
 #'
 isValidProp <- function(property, value, module=NULL, externalModules=NULL ){
-    args = c("isValidProp", "--property", property, "--value", value)
+    args = c("isValidProp", "--property", property, "--value", paste0("\"", value, "\""))
     if ( !is.null(module) ){
         args = c(args, "--module", module)
     }
