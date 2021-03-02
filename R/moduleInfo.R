@@ -22,7 +22,7 @@ moduleInfo <- function(externalModules=NULL){
     json_lines = callBioLockJApi(args, externalModules=externalModules)
     json_str = paste(json_lines, collapse="")
     obj = rjson::fromJSON(json_str)
-    names(obj) <- sapply(obj, function(mi){mi$title})
+    names(obj) <- sapply(obj, function(mi){substring(mi$usage, 12)})
     moduleIn <- lapply(obj, function(mi){
         mi$properties = nameProperties(mi$properties)
         return(mi)
